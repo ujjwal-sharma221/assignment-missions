@@ -2,7 +2,8 @@
 
 import { z } from "zod";
 import { cookies } from "next/headers";
-import bcrypt from "bcryptjs";
+
+import { hash, verify } from "@node-rs/argon2";
 
 import { signUpSchema } from "./_components/signup-form";
 import { prisma } from "@/prisma";
@@ -19,7 +20,12 @@ export const SignUp = async (values: z.infer<typeof signUpSchema>) => {
     });
     if (existingUser) return { error: "User already exists", success: false };
 
-    const hashedPassword = await bcrypt.hash(values.password, 10);
+    const hashedPassword = await hash(values.password, {
+      memoryCost: 19456,
+      timeCost: 2,
+      outputLen: 32,
+      parallelism: 1,
+    });
 
     const user = await prisma.user.create({
       data: {
@@ -53,10 +59,12 @@ export const SignIn = async (values: z.infer<typeof signInSchema>) => {
       return { success: false, error: "Please check your mail or password" };
     }
 
-    const passwordMatch = await bcrypt.compare(
-      user.hashedPassword,
-      values.password,
-    );
+    const passwordMatch = await verify(user.hashedPassword, values.password, {
+      memoryCost: 19456,
+      timeCost: 2,
+      outputLen: 32,
+      parallelism: 1,
+    });
     if (!passwordMatch)
       return { success: false, error: "Please check your credentials" };
 

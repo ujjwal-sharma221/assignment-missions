@@ -14,11 +14,11 @@ export default function MarketingLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <>
       <body className={` h-full`}>
         <Navbar />
         <main className="pt-40 pb-20 "> {children} </main>
       </body>
-    </html>
+    </>
   );
 }
