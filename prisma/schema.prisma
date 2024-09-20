@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("POSTGRES_PRISMA_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
+}
+
+model User {
+  id             String    @id @default(uuid())
+  email          String    @unique
+  name           String
+  hashedPassword String?
+  Session        Session[]
+}
+
+model Session {
+  id        String   @id @default(cuid()) @map("_id")
+  userId    String
+  createdAt DateTime @default(now())
+  expiresAt DateTime
+  user      User     @relation(fields: [userId], references: [id])
+}
+
+model Boards {
+  id            String @id @default(uuid())
+  userId        String
+  title         String
+  imageId       String
+  imageThumbUrl String
+  imageFullUrl  String
+  imageUsername String
+  imageLinkHTML String
+}
