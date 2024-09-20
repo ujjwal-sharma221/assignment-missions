@@ -36,7 +36,7 @@ export const FormPopover = ({
     onSuccess: (data) => {
       toast.success("Board created");
       closeRef.current?.click();
-      router.push(`/board/${data.id}/kanaban`);
+      router.push(`/main/board/${data.id}/kanaban`);
     },
     onError: (error) => {
       console.error(error);
@@ -74,7 +74,12 @@ export const FormPopover = ({
         <form action={onSubmit} className="space-y-4">
           <div className="space-y-4">
             <FormPicker id="image"></FormPicker>
-            <FormInput errors={fieldError} />
+            <FormInput
+              id="title"
+              label="Board title"
+              type="text"
+              errors={fieldError}
+            />
             <Button type="submit">Create</Button>
           </div>
         </form>
