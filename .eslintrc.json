@@ -4,6 +4,6 @@
     "react/no-unescaped-entities": "off",
     "@next/next/no-page-custom-font": "off",
     "no-unused-vars": "off",
-    "no-empty-interface": 0
+    "no-empty-interface": false
   }
 }
