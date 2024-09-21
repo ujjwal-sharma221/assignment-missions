@@ -6,13 +6,9 @@ import { ListForm } from "../../_components/list-form";
 
 interface ViewListContainerProps {
   data: ListWithCards[];
-  boardId: string;
 }
 
-export const ViewListContainer = ({
-  data,
-  boardId,
-}: ViewListContainerProps) => {
+export const ViewListContainer = ({ data }: ViewListContainerProps) => {
   return (
     <ol className="flex gap-y-3 h-full flex-col">
       {data.map((list) => (
