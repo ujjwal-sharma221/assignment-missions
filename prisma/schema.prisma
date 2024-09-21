@@ -50,12 +50,19 @@ model List {
 }
 
 model Card {
-  id          String  @id @default(uuid())
+  id          String    @id @default(uuid())
   title       String
   order       Int
   description String?
+  priority    Priority? @default(High)
   listId      String
-  list        List    @relation(fields: [listId], references: [id], onDelete: Cascade)
+  list        List      @relation(fields: [listId], references: [id], onDelete: Cascade)
 
   @@index([listId])
+}
+
+enum Priority {
+  Low
+  Medium
+  High
 }
