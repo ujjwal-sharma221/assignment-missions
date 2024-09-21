@@ -6,6 +6,7 @@ import { ListForm } from "../../_components/list-form";
 
 interface ViewListContainerProps {
   data: ListWithCards[];
+  boardId: string;
 }
 
 export const ViewListContainer = ({ data }: ViewListContainerProps) => {
