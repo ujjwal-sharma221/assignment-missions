@@ -3,11 +3,13 @@
 import { Settings2 } from "lucide-react";
 import { usePathname, useRouter } from "next/navigation";
 import { useState } from "react";
+import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
+  DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuRadioGroup,
   DropdownMenuRadioItem,
@@ -36,7 +38,7 @@ export const ActionButton = () => {
       </DropdownMenuTrigger>
 
       <DropdownMenuContent className="w-56">
-        <DropdownMenuLabel>View</DropdownMenuLabel>
+        <DropdownMenuLabel>Actions</DropdownMenuLabel>
         <DropdownMenuSeparator />
 
         <DropdownMenuRadioGroup value={position} onValueChange={setPosition}>
@@ -55,6 +57,14 @@ export const ActionButton = () => {
             List
           </DropdownMenuRadioItem>
         </DropdownMenuRadioGroup>
+
+        <DropdownMenuSeparator />
+
+        <DropdownMenuItem asChild>
+          <Link className="cursor-pointer" href="/main">
+            Return to all boards
+          </Link>
+        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

@@ -44,7 +44,7 @@ export const SignInForm = () => {
     const res = await SignIn(values);
     if (res.success) {
       toast.success("Welcome back");
-      router.push("/");
+      router.push("/main");
     } else {
       toast.error(res.error);
     }

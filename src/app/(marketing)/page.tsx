@@ -23,7 +23,7 @@ const MarketingPage = () => {
         and finally get stuff done
       </div>
       <Button className="bg-[#FF6969] mt-6" asChild>
-        <Link href="/sign-up">Onboarding</Link>
+        <Link href="/auth">Onboarding</Link>
       </Button>
     </div>
   );

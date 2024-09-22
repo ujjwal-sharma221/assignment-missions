@@ -53,7 +53,7 @@ export const SignUpForm = () => {
     const res = await SignUp(values);
     if (res.success) {
       toast.success("Account created successfully");
-      router.push("/");
+      router.push("/main");
     } else {
       toast.error(res.error);
     }

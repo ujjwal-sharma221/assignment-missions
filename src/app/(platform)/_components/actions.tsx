@@ -1,7 +1,11 @@
 "use client";
 
+import { LogOut } from "lucide-react";
+
 import { usePathname } from "next/navigation";
 import { ActionButton } from "./action-button";
+import { Button } from "@/components/ui/button";
+import { Logout } from "@/app/auth/auth.actions";
 
 export const Actions = () => {
   const pathname = usePathname();
@@ -13,7 +17,14 @@ export const Actions = () => {
             <ActionButton />
           </button>
         )}
-        <button className="">Accounts Button</button>
+        <Button
+          onClick={() => Logout()}
+          variant="ghost"
+          size="sm"
+          className="text-muted-foreground"
+        >
+          <LogOut className="size-5" />
+        </Button>
       </div>
     </div>
   );
